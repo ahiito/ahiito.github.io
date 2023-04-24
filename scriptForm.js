@@ -21,9 +21,6 @@ $formMilage.innerText = $chosenAutoForm.milage;
 $formPrice.innerText = $chosenAutoForm.price;
 $formImg.src = $chosenAutoForm.img;
 
-// $chosenAutoForm.tires = +$chosenAutoForm.price * 0.15
-// console.log($chosenAutoForm.tires)
-
 let $paymentMethod = "Gotówka"; //definicja zmiannej zapisująca metodę finansowania
 let $finalPrice;
 $finalPrice = document.getElementById("finalPrice"); // definicja zmiennej zapisująca finalną cenę
@@ -41,10 +38,12 @@ let $tiresButton = document.getElementById("tires");
 let $addonsBtn = document.getElementById("addonsBtn");
 let $goBackBtn = document.getElementById("goBackBtn");
 
+//kod w którym po przyciśnieciu przyciusku "powrót do strony wyboru aut" przenosi nas na stronę główną wyboru samochodu
 $goBackBtn.addEventListener("click", () => {
   window.location.href = "index.html";
 })
 
+//blok kodu przyccisk dodania opcji dodatkowych i źródła finansowania oraz zapisania ich w zmiennych (obiekcie $chosenAuto)
 $addonsBtn.addEventListener("click", () => {
   if ($paymentMethodRadio.checked) {
     $paymentMethod = "Gotówka";
@@ -114,6 +113,7 @@ $submitBtn.addEventListener("click", () => {
   $user.emailAddress = document.getElementById("emailAddress").value;
   $user.date =  document.getElementById("datePicker").value;
   //funkcja walidująca zawartość formularza
+  //jeśli jakieś pole jest puste zostanie wyświetlony komunikat o brakującym elemencie formularza w postaci alertu
   function validateFunc(content) {
     if (content === "") {
       return false;
@@ -121,8 +121,6 @@ $submitBtn.addEventListener("click", () => {
       return true;
     }
   };
-console.log($user);
-console.log($user.date)
 //logika która w przypadku braku min jednego elementu w formularzu da wynik false 
   let allDataFilled = validateFunc($user.firstName) && validateFunc($user.lastName) && validateFunc($user.address)
   && validateFunc($user.homeNumber) && validateFunc($user.cityName) && validateFunc($user.zipCode) && validateFunc($user.phoneNumber) 
