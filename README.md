@@ -1,3 +1,3 @@
-# First_WebPage
-First Weba Page
+# Projekt zaliczeniowy z Frondend Developer - CDV 
+
 https://ahiito.github.io
