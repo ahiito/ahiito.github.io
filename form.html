@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./scriptForm.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <title>Buy -a- Car - projekt -> Formularz zakupu</title>
+  </head>
+  <body>
+    <header class="header">formularz zamówienia</header>
+    <main>
+      <section class="hero_baner">
+        <div class="hero_baner_form">
+          <section class="grid_container">
+            <div class="grid-child_form">
+              <div class="grid-child_img">
+                <img
+                  class="car_image"
+                  id="form_img"
+                  src="https://picsum.photos/400/200"
+                />
+              </div>
+              <div id="form" class="grid-child_info">
+                <p class="lv1"><span Id="form_brand">Loerm Ipsum</span></p>
+                <p class="lv1"><span Id="form_model">Loerm Ipsum</span></p>
+                <p class="lv2">
+                  Rocznik: <span Id="form_year">Loerm Ipsum</span>
+                </p>
+                <p class="lv2">
+                  Moc silnika: <span Id="form_pwr">Loerm Ipsum</span>
+                </p>
+                <p class="lv2">
+                  Przebieg: <span Id="form_milage">Loerm Ipsum</span>
+                </p>
+                <p class="lv4">
+                  Cena auta: <span Id="form_price">Loerm Ipsum</span> EUR
+                </p>
+              </div>
+            </div>
+            <div class="grid-child_form">
+              <p class="lv1">Rozszerz ofertę</p>
+              <div>
+                <p class="lv2">Opcje finansowania:</p>
+              </div>
+              <div class="radioBtn">
+                <p>
+                  <input
+                    class="radio"
+                    type="radio"
+                    id="payCash"
+                    name="financing"
+                    value="cash"
+                    checked
+                  />
+                  <label class="radio" for="payCash">Gotówka</label>
+                  <br />
+                  <input
+                    class="radio"
+                    type="radio"
+                    id="takeCredit"
+                    name="financing"
+                    value="credit"
+                  />
+                  <label class="radio" for="takeCredit">Leasing</label>
+                </p>
+              </div>
+
+              <div>
+                <p class="lv2">Ubezpieczenie:</p>
+              </div>
+              <div class="radioBtn">
+                <p>
+                  <input
+                    class="radio"
+                    type="radio"
+                    id="noneInsur"
+                    name="Insurance"
+                    value="none"
+                    checked
+                  />
+                  <label class="radio" for="noneInsur">Bez ubezpieczenia</label>
+                  <br />
+                  <input
+                    class="radio"
+                    type="radio"
+                    id="basicInsur"
+                    name="Insurance"
+                    value="basic"
+                  />
+                  <label class="radio" for="basicInsur"
+                    >Ubezpieczenie podstawowe</label
+                  >
+                  <br />
+                  <input
+                    class="radio"
+                    type="radio"
+                    id="expInsur"
+                    name="Insurance"
+                    value="expanded"
+                  />
+                  <label class="radio" for="expInsur"
+                    >Ubezpieczenie rozszerzone</label
+                  >
+                  <br />
+                  <input
+                    class="radio"
+                    type="radio"
+                    id="premiumInsur"
+                    name="Insurance"
+                    value="premium"
+                  />
+                  <label class="radio" for="premiumInsur"
+                    >Ubezpieczenie premium</label
+                  >
+                </p>
+              </div>
+              <div>
+                <p class="lv2">Opcje dodatkowe:</p>
+              </div>
+              <div class="checkBox">
+                <p>
+                  <input
+                    class="check"
+                    type="checkbox"
+                    id="assistance"
+                    name="optionAssistance"
+                    value="assistance"
+                  />
+                  <label class="radio" for="assistance"
+                    >Transport auta pod wskazany adres</label
+                  >
+                  <br />
+                  <input
+                    class="check"
+                    type="checkbox"
+                    id="rims"
+                    name="optionRims"
+                    value="rims"
+                  />
+                  <label class="radio" for="rims"
+                    >Komplet dodatkowych felg aluminiowych</label
+                  >
+                  <br />
+                  <input
+                    class="check"
+                    type="checkbox"
+                    id="tires"
+                    name="optionTires"
+                    value="tires"
+                  />
+                  <label class="radio" for="tires">Komplet opon zimowych</label>
+                </p>
+              </div>
+              <div class="objectButton">
+                <button type="button" class="submitButton" id="addonsBtn">
+                  Dodaj opcje dodatkowe do zamówienia
+                </button>
+                <div class="objectButton">
+                  <button type="button" class="submitButton" id="goBackBtn">
+                    Wróć do strony wyboru auta
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="grid-child_price">
+              <p class="lv1">Cena końcowa: <span Id="finalPrice"></span> EUR</p>
+            </div>
+            <div class="grid-child_userform">
+              <p class="lv2">Dane kupującego</p>
+              <form name="userForm" class="form" id="userForm">
+                <div class="formElement">
+                  <label for="firstName">Imię: </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Jan"
+                  />
+                </div>
+                <div class="formElement">
+                  <label for="lastName">Nazwisko: </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Kowalski"
+                  />
+                </div>
+                <div class="formElement">
+                  <label for="address">Ulica: </label>
+                  <input
+                    type="text"
+                    id="address"
+                    name="adress"
+                    placeholder="Prosta"
+                  />
+                </div>
+                <div class="formElement">
+                  <label for="homeNumber">Numer domu: </label>
+                  <input
+                    type="text"
+                    id="homeNumber"
+                    name="homeNumber"
+                    placeholder="12/3"
+                  />
+                </div>
+                <div class="formElement">
+                  <label for="cityName">Miasto: </label>
+                  <input
+                    type="text"
+                    id="cityName"
+                    name="cityName"
+                    placeholder="Warszawa"
+                  />
+                </div>
+                <div class="formElement">
+                  <label for="zipCode">Kod pocztowy: </label>
+                  <input
+                    type="text"
+                    id="zipCode"
+                    name="zipCode"
+                    placeholder="__-___"
+                  />
+                </div>
+                <div class="formElement">
+                  <label for="phoneNumber">Numer telefonu: </label>
+                  <input
+                    type="text"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    placeholder="+48 555 666 777"
+                  />
+                </div>
+                <div class="formElement">
+                  <label for="emailAddress">e-mail: </label>
+                  <input
+                    type="email"
+                    id="emailAddress"
+                    name="emailAddress"
+                    placeholder="user@example.com"
+                  />
+                </div>
+                <div class="formElement">
+                  <label for="date">Data dostawy: </label>
+                  <input
+                    type="date"
+                    data-role="calendarpicker"
+                    id="datePicker"
+                    name="date"
+                    min="2023-05-01" 
+                    value=""
+                  />
+                </div>
+              </form>
+              <button type="submit" class="submitButton" id="submitBtn">
+                Potwierdz zamówienie
+              </button>
+            </div>
+          </section>
+          <section class="summary_section">
+            <div class="summary_container">
+              <h5>Dziękujemy za dokonanie zakupu, oto podsumowanie</h5>
+              <div class="grid-child_form">
+                <div class="grid-child_img">
+                  <img
+                    class="car_image"
+                    id="formImg"
+                    src="https://picsum.photos/400/200"
+                  />
+                </div>
+                <div id="summary" class="grid-child_info">
+                  <p class="lv1"><span Id="formBrand">Loerm Ipsum</span></p>
+                  <p class="lv1"><span Id="formModel">Loerm Ipsum</span></p>
+                  <p class="lv2">
+                    Rocznik: <span Id="formYear">Loerm Ipsum</span>
+                  </p>
+                  <p class="lv2">
+                    Moc silnika: <span Id="formPwr">Loerm Ipsum</span>
+                  </p>
+                  <p class="lv2">
+                    Przebieg: <span Id="formMilage">Loerm Ipsum</span>
+                  </p>
+                  <p class="lv4">
+                    Cena auta: <span Id="formPrice">Loerm Ipsum</span> EUR
+                  </p>
+                </div>
+              </div>
+              <div class="summary_element">
+                <div class="grid-child_summary">
+                  <p class="form">
+                    <span id="summaryFirstName"></span>
+                    <span id="summaryLastName"></span>
+                  </p>
+                  <p class="form">
+                    <span id="summaryAddress"></span>
+                    <span id="summaryHomeNumber"></span>,
+                    <span id="summaryZipCode"></span>
+                    <span id="summaryCityName"></span>
+                  </p>
+                  <p class="form">tel: <span id="summaryPhoneNumber"></span></p>
+                  <p class="form">
+                    e-mail: <span id="summaryEmailAddress"></span>
+                  </p>
+                </div>
+                <div class="grid-child_summary">
+                  <p class="lv2">Konfiguracja:</p>
+                  <p class="form">
+                    Opcja finansowania: <span id="paymentMethod"></span>
+                  </p>
+                  <p class="form">
+                    Data dostawy: <span id="summaryDate"></span> 
+                  </p>
+                  <p class="form">
+                    Wartość ubezpieczenia:
+                    <span id="summaryInsurance"></span> EUR
+                  </p>
+                  <p class="form">
+                    Cena transport auta:
+                    <span id="summaryAssistance"></span> EUR
+                  </p>
+                  <p class="form">
+                    Dodatkowe felgi: <span id="summaryRims"></span> EUR
+                  </p>
+                  <p class="form">
+                    Zimowe opony: <span id="summaryTires"></span> EUR
+                  </p>
+                  <p class="lv2">
+                    Opcje razem: <span id="summaryAddons"></span> EUR
+                  </p>
+                  <p class="lv5">
+                    Do zapłaty: <span Id="summaryPrice">0</span> EUR
+                  </p>
+                </div>
+              </div>
+              <div class="objectButton">
+                <button class="submitButton" id="returnBtn">
+                  Wróć do strony głównej
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
