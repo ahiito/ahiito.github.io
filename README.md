@@ -26,3 +26,13 @@ data dostawy jest ustawiona automatycznie na min 14 dni od bieżącej daty równ
 Po wybraniu opcji dodatkowych i wypełnieniu formularza zamówienia i potwierdzeniu przyciskiem "potwierdz zamówienie" 
 sekacja grid_container zostaje ukryta funkcją w js display:none, w tym samym czasie sekacja summary_container dostaje atrybut display:flex. Podsumowanie zawiera informację o wybranym aucie, informacjach użytkownika z formularza zapisanych w obiekcie $user. oraz wybranych opcjach dodatkowych wraz z ceną. 
 Przycisk w podsumowaniu "wróc do strony głównej" przekierowuje użytownika do strony głównej jesnocześnie kasuje infoermacje przechowywane w localStorage 
+
+Poprawki (Maj)
+- wszystkie zmiany umieszczone w branchu "poprawki" na GitHub
+- zaktualizowano plik README.md o informację co zostało poprawione 
+- poprawiono date picker 
+- zmiana stylowania przycisku, aby nie dotykał dolnej krawędzi ramki w sekcji "opcji dodatkowych" 
+- wszystkie obiekty definiujące samochody umieszczone w tablicy o nazwie "cars"
+- dodano linie kodu w addEventListener dla przycisku potwierdzającego zamówienie tak aby automatycznie potwierdzał opcje jeśli użytkownik tego nie rozbi (ma to na celu uniknięcie wyświetlania pustych wartości w podsumowaniu)
+- zastosowano pętle po elementach tablicy cars oraz nasłuchowanie eventów na stronie przez co zredukowano powtórzony kod w pliku script.js 
+- dodano zapisywanie danych użytkownika w localStorage tak, aby po odświeżeniu strony formularza dane były uzupełnione.
