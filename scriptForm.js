@@ -2,10 +2,7 @@ let chosenAuto;
 let chosenAutoGet = localStorage.getItem(chosenAuto); //wczytuje z local storage string
 let chosenAutoForm = JSON.parse(chosenAutoGet); // zamiana na tablice po zapisaniu w local storage
 //definicja klienta/"usera"
-let userString;
-let userStored; 
-let user;
-let userInLocalStorage;
+
 
 //przypisuje zapisane elementy do stałych
 $formBrand = document.getElementById("form_brand");
@@ -41,12 +38,15 @@ $tiresButton = document.getElementById("tires");
 $addonsBtn = document.getElementById("addonsBtn");
 $goBackBtn = document.getElementById("goBackBtn");
 
-// funkcja pobierająca informacje z localStorage
-userInLocalStorage = localStorage.getItem(user); //wczytuje z local storage string
-userStored = JSON.parse(userInLocalStorage); // zamiana na tablice po zapisaniu w local storage
-userInLocalStorage = localStorage.getItem(userStored); //wczytuje z local storage string
-userStored = JSON.parse(userInLocalStorage); // zamiana na tablice po zapisaniu w local storage
+let userString;
+let userStored; 
+let user;
+let sessionUser;
+let userInSessionStorage;
 
+// funkcja pobierająca informacje z sessionStorage
+userInSessionStorage = sessionStorage.getItem(userString); //wczytuje z sessionStorage string
+userStored = JSON.parse(userInSessionStorage); // zamiana na tablice po zapisaniu w sessionStorage
 
 //kod w którym po przyciśnieciu przyciusku "powrót do strony wyboru aut" przenosi nas na stronę główną wyboru samochodu
 $goBackBtn.addEventListener("click", () => {
@@ -105,6 +105,7 @@ let newDate = `${thisYear}-0${thisMonth}-${thisDay}`;
 document.getElementById("datePicker").min = newDate;
 document.getElementById("datePicker").value = newDate;
 
+
 // warunek który sprawdza czy w localstorage został pobrany zapisany user,
 // jeśli tak to uzupełnia formularz 
   if (userStored === null) {
@@ -138,10 +139,9 @@ $submitBtn.addEventListener("click", () => {
   user.phoneNumber = document.getElementById("phoneNumber").value;
   user.emailAddress = document.getElementById("emailAddress").value;
   user.date =  document.getElementById("datePicker").value;
-
   //fragment kodu zapisujący dane użytkownika w localStorage po potwierdzeniu formularza 
   userString = JSON.stringify(user); //zamieniam tablice z userem na string przed zapisaniem w local storage
-  localStorage.setItem(user, userString); //zapisuje w local storage string
+  sessionStorage.setItem(sessionUser, userString); //zapisuje w local storage string
   //funkcja walidująca zawartość formularza
   //jeśli jakieś pole jest puste zostanie wyświetlony komunikat o brakującym elemencie formularza w postaci alertu
   function validateFunc(content) {
@@ -202,6 +202,6 @@ $submitBtn.addEventListener("click", () => {
 $returnBtn = document.getElementById("returnBtn");
 $returnBtn.addEventListener("click", () => {
   window.localStorage.clear(chosenAuto);
-  window.localStorage.clear(user);
+  window.sessionStorage.clear(userString);
   window.location.href = "index.html"; //przekierwoanie na stronę główną
 });
