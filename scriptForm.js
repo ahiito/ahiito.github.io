@@ -1,8 +1,11 @@
 let chosenAuto;
-let chosenAutoGet = localStorage.getItem(chosenAuto); //wczytuje z local storage string
+let chosenAutoGet = localStorage.getItem("chosenAuto"); //wczytuje z local storage string
 let chosenAutoForm = JSON.parse(chosenAutoGet); // zamiana na tablice po zapisaniu w local storage
 //definicja klienta/"usera"
-
+let userString;
+let userStored;
+let user;
+let userInLocalStorage;
 
 //przypisuje zapisane elementy do stałych
 $formBrand = document.getElementById("form_brand");
@@ -38,20 +41,14 @@ $tiresButton = document.getElementById("tires");
 $addonsBtn = document.getElementById("addonsBtn");
 $goBackBtn = document.getElementById("goBackBtn");
 
-let userString;
-let userStored; 
-let user;
-let sessionUser;
-let userInSessionStorage;
-
-// funkcja pobierająca informacje z sessionStorage
-userInSessionStorage = sessionStorage.getItem(userString); //wczytuje z sessionStorage string
-userStored = JSON.parse(userInSessionStorage); // zamiana na tablice po zapisaniu w sessionStorage
+// funkcja pobierająca informacje z localStorage
+userInLocalStorage = localStorage.getItem("user"); //wczytuje z local storage string
+userStored = JSON.parse(userInLocalStorage); // zamiana na tablice po zapisaniu w local storage
 
 //kod w którym po przyciśnieciu przyciusku "powrót do strony wyboru aut" przenosi nas na stronę główną wyboru samochodu
 $goBackBtn.addEventListener("click", () => {
   window.location.href = "index.html";
-})
+});
 
 //blok kodu - przycisk dodania opcji dodatkowych i źródła finansowania oraz zapisania ich w zmiennych (obiekcie $chosenAuto)
 $addonsBtn.addEventListener("click", () => {
@@ -92,44 +89,62 @@ $addonsBtn.addEventListener("click", () => {
     chosenAutoForm.tires;
 });
 
-//blok kodu obliczający 14 dni od dzisiejszej daty i wstawiający wartość min do HTML tak aby minimalną data dostarczenia auta 
+//blok kodu obliczający 14 dni od dzisiejszej daty i wstawiający wartość min do HTML tak aby minimalną data dostarczenia auta
 //była data min 14 dni od dnia obecnego
 let currentDate = new Date(Date.now() + 12096e5);
 let thisDay;
 let thisMonth;
 let cthisYear;
-thisDay = String(currentDate.getDate()).padStart(2, '0');
-thisMonth = currentDate.getMonth()+1;
+thisDay = String(currentDate.getDate()).padStart(2, "0");
+thisMonth = currentDate.getMonth() + 1;
 thisYear = currentDate.getFullYear();
 let newDate = `${thisYear}-0${thisMonth}-${thisDay}`;
 document.getElementById("datePicker").min = newDate;
 document.getElementById("datePicker").value = newDate;
 
-
 // warunek który sprawdza czy w localstorage został pobrany zapisany user,
-// jeśli tak to uzupełnia formularz 
-  if (userStored === null) {
-    console.log("brak usera w localStorage");
-  } 
-  else {
-    document.getElementById("firstName").value = userStored.firstName;
-    document.getElementById("lastName").value = userStored.lastName;
-    document.getElementById("address").value = userStored.address;
-    document.getElementById("homeNumber").value = userStored.homeNumber;
-    document.getElementById("cityName").value = userStored.cityName;
-    document.getElementById("zipCode").value = userStored.zipCode;
-    document.getElementById("phoneNumber").value = userStored.phoneNumber;
-    document.getElementById("emailAddress").value = userStored.emailAddress;
-    document.getElementById("datePicker").value = userStored.date;
-  }
+// jeśli tak to uzupełnia formularz
+if (userStored === null) {
+  console.log("brak usera w localStorage");
+} else {
+  document.getElementById("firstName").value = userStored.firstName;
+  document.getElementById("lastName").value = userStored.lastName;
+  document.getElementById("address").value = userStored.address;
+  document.getElementById("homeNumber").value = userStored.homeNumber;
+  document.getElementById("cityName").value = userStored.cityName;
+  document.getElementById("zipCode").value = userStored.zipCode;
+  document.getElementById("phoneNumber").value = userStored.phoneNumber;
+  document.getElementById("emailAddress").value = userStored.emailAddress;
+  document.getElementById("datePicker").value = userStored.date;
+}
 
 //walidacja formularza po wciśnieciu przycisku potwierdzającego zamowienie
 $submitBtn = document.getElementById("submitBtn");
 $submitBtn.addEventListener("click", () => {
-  $addonsBtn.dispatchEvent(new Event('click')); // linia kodu potwierdzająca wybór opcji w przypadku gdyby uzytkownik nie potwierdził wyboru
+  $addonsBtn.dispatchEvent(new Event("click")); // linia kodu potwierdzająca wybór opcji w przypadku gdyby uzytkownik nie potwierdził wyboru
   //pobranie wszystkich elementów usera pobieranych z formularza HTML
-  userStored = {firstName: "", lastName: "", address: "", homeNumber: "", cityName: "", zipCode: "", emailAddress:"", phoneNumber: "", date: ""};
-  user = {firstName: "", lastName: "", address: "", homeNumber: "", cityName: "", zipCode: "", emailAddress:"", phoneNumber: "", date: ""};
+  userStored = {
+    firstName: "",
+    lastName: "",
+    address: "",
+    homeNumber: "",
+    cityName: "",
+    zipCode: "",
+    emailAddress: "",
+    phoneNumber: "",
+    date: "",
+  };
+  user = {
+    firstName: "",
+    lastName: "",
+    address: "",
+    homeNumber: "",
+    cityName: "",
+    zipCode: "",
+    emailAddress: "",
+    phoneNumber: "",
+    date: "",
+  };
   user.firstName = document.getElementById("firstName").value;
   user.lastName = document.getElementById("lastName").value;
   user.address = document.getElementById("address").value;
@@ -138,10 +153,11 @@ $submitBtn.addEventListener("click", () => {
   user.zipCode = document.getElementById("zipCode").value;
   user.phoneNumber = document.getElementById("phoneNumber").value;
   user.emailAddress = document.getElementById("emailAddress").value;
-  user.date =  document.getElementById("datePicker").value;
-  //fragment kodu zapisujący dane użytkownika w localStorage po potwierdzeniu formularza 
+  user.date = document.getElementById("datePicker").value;
+
+  //fragment kodu zapisujący dane użytkownika w localStorage po potwierdzeniu formularza
   userString = JSON.stringify(user); //zamieniam tablice z userem na string przed zapisaniem w local storage
-  sessionStorage.setItem(sessionUser, userString); //zapisuje w local storage string
+  localStorage.setItem("user", userString); //zapisuje w local storage string
   //funkcja walidująca zawartość formularza
   //jeśli jakieś pole jest puste zostanie wyświetlony komunikat o brakującym elemencie formularza w postaci alertu
   function validateFunc(content) {
@@ -150,11 +166,18 @@ $submitBtn.addEventListener("click", () => {
     } else {
       return true;
     }
-  };
-//logika która w przypadku braku min jednego elementu w formularzu da wynik false 
-  let allDataFilled = validateFunc(user.firstName) && validateFunc(user.lastName) && validateFunc(user.address)
-  && validateFunc(user.homeNumber) && validateFunc(user.cityName) && validateFunc(user.zipCode) && validateFunc(user.phoneNumber) 
-  && validateFunc(user.emailAddress) && validateFunc(user.date);
+  }
+  //logika która w przypadku braku min jednego elementu w formularzu da wynik false
+  let allDataFilled =
+    validateFunc(user.firstName) &&
+    validateFunc(user.lastName) &&
+    validateFunc(user.address) &&
+    validateFunc(user.homeNumber) &&
+    validateFunc(user.cityName) &&
+    validateFunc(user.zipCode) &&
+    validateFunc(user.phoneNumber) &&
+    validateFunc(user.emailAddress) &&
+    validateFunc(user.date);
   //warunek który przełącza na okno podsumowania jeśli wszystkie pola formularza zostały wypełnione i mają status true,
   //jeśli choć jeden element jest false pojawi się komunikat o braku informacji w formularzu
   if (allDataFilled === true) {
@@ -177,14 +200,20 @@ $submitBtn.addEventListener("click", () => {
   document.getElementById("formImg").src = chosenAutoForm.img;
 
   //informacje o opcjach dodatkowych w podsumowaniu
-  let addonsPrice = +chosenAutoForm.insur + chosenAutoForm.asistance + chosenAutoForm.rims + chosenAutoForm.tires;
+  let addonsPrice =
+    +chosenAutoForm.insur +
+    chosenAutoForm.asistance +
+    chosenAutoForm.rims +
+    chosenAutoForm.tires;
   document.getElementById("paymentMethod").innerText = paymentMethod;
   document.getElementById("summaryInsurance").innerText = chosenAutoForm.insur;
-  document.getElementById("summaryAssistance").innerText = chosenAutoForm.asistance;
+  document.getElementById("summaryAssistance").innerText =
+    chosenAutoForm.asistance;
   document.getElementById("summaryRims").innerText = chosenAutoForm.rims;
   document.getElementById("summaryTires").innerText = chosenAutoForm.tires;
   document.getElementById("summaryAddons").innerText = addonsPrice;
-  document.getElementById("summaryPrice").innerText = +addonsPrice + chosenAutoForm.price;
+  document.getElementById("summaryPrice").innerText =
+    +addonsPrice + chosenAutoForm.price;
 
   //informacje o użytkowniku w podsumowaniu
   document.getElementById("summaryFirstName").innerText = user.firstName;
@@ -201,7 +230,7 @@ $submitBtn.addEventListener("click", () => {
 //przycisk przekierowania do strony głównej po zakupie
 $returnBtn = document.getElementById("returnBtn");
 $returnBtn.addEventListener("click", () => {
-  window.localStorage.clear(chosenAuto);
-  window.sessionStorage.clear(userString);
+  window.localStorage.clear("chosenAuto");
+  window.localStorage.clear("user");
   window.location.href = "index.html"; //przekierwoanie na stronę główną
 });
