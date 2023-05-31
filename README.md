@@ -36,3 +36,6 @@ Poprawki (Maj)
 - dodano linie kodu w addEventListener dla przycisku potwierdzającego zamówienie tak aby automatycznie potwierdzał opcje jeśli użytkownik tego nie rozbi (ma to na celu uniknięcie wyświetlania pustych wartości w podsumowaniu)
 - zastosowano pętle po elementach tablicy cars oraz nasłuchowanie eventów na stronie przez co zredukowano powtórzony kod w pliku script.js 
 - dodano zapisywanie danych użytkownika w localStorage tak, aby po odświeżeniu strony formularza dane były uzupełnione.
+
+2023-05-24
+- zamieniono przechowywanie informacji o użytkowniku z localStorage na sessionstorage. W localstorage przechowwyane są informację o wybranym aucie i nie do końca poprawnie przechowywały się informacje o użytkowniku. Przez co dane użytkownika przchowywane są w sessionstorage i czyszczone w momencie potwierdzenia zakupu auta. 
